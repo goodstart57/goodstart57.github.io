@@ -1,0 +1,11 @@
+<div>site.categories</div>
+{% for cat in site.categories %}
+<div>
+  <span>{{ cat[0] }}</span>
+    {% for post in cat %}
+    <a href="{{ post.url | replace:".html","" | prepend: site.baseurl }}" class="blog-post-title">
+      {{ post.title }}
+    </a>
+    {% endfor %}
+</div>
+{% endfor %}
