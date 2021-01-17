@@ -1,11 +1,15 @@
-<div>site.categories</div>
-{% for cat in site.categories %}
-<div>
-  <span>{{ cat[0] }}</span>
-    {% for post in cat %}
-    <a href="{{ post.url | replace:".html","" | prepend: site.baseurl }}" class="blog-post-title">
-      {{ post.title }}
-    </a>
-    {% endfor %}
-</div>
-{% endfor %}
+<ul class="posts-list">
+  
+  {% assign category = page.category | default: page.title %}
+  {% for post in site.categories[category] %}
+    <li>
+      <h3>
+        <a href="{{ site.baseurl }}{{ post.url }}">
+          {{ post.title }}
+        </a>
+        <small>{{ post.date | date_to_string }}</small>
+      </h3>
+    </li>
+  {% endfor %}
+  
+</ul>
